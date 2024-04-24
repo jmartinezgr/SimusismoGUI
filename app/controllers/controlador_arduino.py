@@ -1,12 +1,22 @@
-import serial,time
+import serial
 from logger import log
+import time
 
 class Controlador:
     _arduino = None
     _puerto = None
 
     @classmethod
-    def _obtener_conexion(cls, puerto=None):
+    def _obtener_conexion(cls, puerto: str = None) -> serial.Serial:
+        """
+        Obtiene una conexión serial al Arduino.
+
+        Args:
+            puerto (str, opcional): El puerto serial al que se conectará el Arduino.
+
+        Returns:
+            serial.Serial: La conexión serial al Arduino.
+        """
         if cls._arduino is None:
             if puerto is None and cls._puerto is None:
                 log.error("Error estableciendo la conexión: No se ha definido el puerto del Arduino")
@@ -24,12 +34,24 @@ class Controlador:
             return cls._arduino
 
     @classmethod
-    def establecer_puerto(cls, puerto):
+    def establecer_puerto(cls, puerto: str) -> None:
+        """
+        Establece el puerto serial del Arduino.
+
+        Args:
+            puerto (str): El puerto serial del Arduino.
+        """
         cls._puerto = puerto
         log.info(f"Puerto del Arduino establecido en {puerto}")
 
     @classmethod
-    def enviar_mensaje(cls, mensaje):
+    def enviar_mensaje(cls, mensaje: str) -> None:
+        """
+        Envía un mensaje al Arduino.
+
+        Args:
+            mensaje (str): El mensaje a enviar al Arduino.
+        """
         arduino = cls._obtener_conexion()
         if arduino:
             try:
@@ -41,7 +63,13 @@ class Controlador:
             log.error("No hay conexión establecida con el Arduino.")
 
     @classmethod
-    def recibir_mensaje(cls):
+    def recibir_mensaje(cls) -> str:
+        """
+        Recibe un mensaje del Arduino.
+
+        Returns:
+            str: El mensaje recibido del Arduino.
+        """
         arduino = cls._obtener_conexion()
         if arduino:
             try:
