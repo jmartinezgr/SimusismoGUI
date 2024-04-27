@@ -2,7 +2,7 @@ from tkinter import Tk, Frame, Button, Label, ttk, PhotoImage, Entry
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from ..models.lectura_archivos import LectorArchivoAT2
+from ..controllers.lectura_archivos import LectorArchivoAT2
 
 
 class Grafica:
@@ -38,7 +38,7 @@ class Grafica:
         for spine in self.ax.spines.values():
             spine.set_color("red")
 
-    def animate(self, dato_arduino):
+    def animate(self, dato_arduino)->None:
         """
         Método para actualizar los datos de la gráfica en cada iteración de la animación.
 
@@ -55,7 +55,7 @@ class Grafica:
         self.line2.set_data(range(self.muestra), self.datos_señal2)
 
     
-    def actualizar_grafica(self,nombre,canvas):
+    def actualizar_grafica(self,nombre,canvas)->None:
         
         aceleracion, tiempo = LectorArchivoAT2.leer_archivo(nombre)
         print(aceleracion)

@@ -9,7 +9,7 @@ import tkinter as tk
 
 import collections
 from..grafica import Grafica
-from...models.lectura_archivos import LectorArchivoAT2
+from...controllers.lectura_archivos import LectorArchivoAT2
 from .frame import Frame0
 from .frame1 import Frame1
 from .frame2 import Frame2
