@@ -11,8 +11,8 @@ class Gestor:
             
         except FileNotFoundError as e:
             print(f"Error: {e}")
-
-    def archivos_asociados(self, carpeta)->list[str]:
+    @staticmethod
+    def archivos_asociados(carpeta)->list[str]:
         try:
             ruta_carpeta = os.path.join("data", "datos_sismicos", carpeta)
             lista_archivos = os.listdir(ruta_carpeta)
