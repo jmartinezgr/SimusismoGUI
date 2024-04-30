@@ -9,3 +9,17 @@
 02:51:24 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
 02:51:24 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: HOla
 02:51:24 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Waiting for signal
+04:44:56 PM: INFO [controlador_arduino.py:46] Puerto del Arduino establecido en COM3
+04:44:56 PM: INFO [controlador_arduino.py:30] Conexión al Arduino exitosa
+04:44:58 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
+04:44:58 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
+04:47:46 PM: INFO [controlador_arduino.py:46] Puerto del Arduino establecido en COM3
+04:47:46 PM: INFO [controlador_arduino.py:30] Conexión al Arduino exitosa
+04:47:48 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
+04:47:48 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
+04:47:48 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: 
+04:50:07 PM: INFO [controlador_arduino.py:46] Puerto del Arduino establecido en COM3
+04:50:07 PM: INFO [controlador_arduino.py:30] Conexión al Arduino exitosa
+04:50:09 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
+04:50:09 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
+04:50:09 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: 

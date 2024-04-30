@@ -88,5 +88,3 @@ if __name__ == "__main__":
     if estado == "Arduino ... OK":
         Controlador.enviar_mensaje("Python ... OK")
         estado = Controlador.recibir_mensaje()
-        estado = Controlador.recibir_mensaje()
-        
