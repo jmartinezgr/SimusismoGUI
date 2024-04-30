@@ -26,6 +26,7 @@ class Controlador:
                         cls._puerto if cls._puerto else puerto,
                         9600
                     )
+                    time.sleep(0.1)
                     log.info("Conexión al Arduino exitosa")
                     return cls._arduino
                 except Exception as e:
@@ -55,7 +56,7 @@ class Controlador:
         arduino = cls._obtener_conexion()
         if arduino:
             try:
-                arduino.write(mensaje.encode())
+                arduino.write((mensaje+'\n').encode())
                 log.info(f"Mensaje enviado al Arduino: {mensaje}")
             except Exception as e:
                 log.error(f"Error al enviar mensaje al Arduino: {e}")
@@ -80,3 +81,12 @@ class Controlador:
                 log.error(f"Error al recibir mensaje del Arduino: {e}")
         else:
             log.error("No hay conexión establecida con el Arduino.")
+
+if __name__ == "__main__":
+    Controlador.establecer_puerto("COM3")
+    estado = Controlador.recibir_mensaje()
+    if estado == "Arduino ... OK":
+        Controlador.enviar_mensaje("Python ... OK")
+        estado = Controlador.recibir_mensaje()
+        estado = Controlador.recibir_mensaje()
+        

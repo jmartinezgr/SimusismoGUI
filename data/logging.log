@@ -1,0 +1,11 @@
+02:50:44 PM: INFO [controlador_arduino.py:46] Puerto del Arduino establecido en COM3
+02:50:44 PM: INFO [controlador_arduino.py:30] Conexión al Arduino exitosa
+02:50:46 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
+02:50:46 PM: ERROR [controlador_arduino.py:62] Error al enviar mensaje al Arduino: can only concatenate str (not "bytes") to str
+02:50:46 PM: ERROR [controlador_arduino.py:62] Error al enviar mensaje al Arduino: can only concatenate str (not "bytes") to str
+02:51:22 PM: INFO [controlador_arduino.py:46] Puerto del Arduino establecido en COM3
+02:51:22 PM: INFO [controlador_arduino.py:30] Conexión al Arduino exitosa
+02:51:24 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
+02:51:24 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
+02:51:24 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: HOla
+02:51:24 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Waiting for signal
