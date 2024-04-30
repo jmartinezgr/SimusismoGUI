@@ -5,7 +5,7 @@ log.basicConfig(
     format='%(asctime)s: %(levelname)s [%(filename)s:%(lineno)s] %(message)s',
     datefmt= '%I:%M:%S %p',
     handlers=[
-        log.FileHandler("logging.log"),
+        log.FileHandler("data/logging.log",encoding="utf-8"),
         log.StreamHandler()
     ]
 )
