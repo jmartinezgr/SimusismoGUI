@@ -58,6 +58,7 @@ class Controlador:
         arduino = cls._obtener_conexion()
         if cls._status not in ["OFF","USE"]:
             if arduino:
+                cls._status = "USE"
                 try:
                     arduino.write((mensaje+'\n').encode())
                     log.info(f"Mensaje enviado al Arduino: {mensaje}")
@@ -65,6 +66,7 @@ class Controlador:
                     log.error(f"Error al enviar mensaje al Arduino: {e}")
             else:
                 log.error("No hay conexión establecida con el Arduino.")
+            cls._status = "ON"
         else:
             log.error("La conexion no esta disponible para uso")
 
@@ -80,6 +82,7 @@ class Controlador:
         if cls._status not in ["OFF","WA"]:
             if arduino:
                 try:
+                    cls._status = "WA"
                     mensaje_recibido = arduino.readline().decode().strip()
                     log.info(f"Mensaje recibido del Arduino: {mensaje_recibido}")
                     return mensaje_recibido
@@ -87,6 +90,7 @@ class Controlador:
                     log.error(f"Error al recibir mensaje del Arduino: {e}")
             else:
                 log.error("No hay conexión establecida con el Arduino.")
+            cls._status = "ON"
         else:
             log.error("La conexion no esta disponible para uso")
     
@@ -123,6 +127,20 @@ class Controlador:
         else:
             # Si no hay conexión establecida con el Arduino, intenta establecerla.
             cls._obtener_conexion()
+
+    @classmethod
+    def get_status(cls) -> str:
+        """
+        Getter de la variable de clase estatus.
+        """
+        return cls._status
+    
+    @classmethod
+    def finalizar_conexion(cls):
+        cls._arduino.close()
+        log.info(f"Conexion con el arduino cerrada exitosamente.")
+        cls._arduino = None
+
 
 if __name__ == "__main__":
     Controlador.establecer_puerto("COM3")

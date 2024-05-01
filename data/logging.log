@@ -23,3 +23,17 @@
 04:50:09 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: Arduino ... OK
 04:50:09 PM: INFO [controlador_arduino.py:60] Mensaje enviado al Arduino: Python ... OK
 04:50:09 PM: INFO [controlador_arduino.py:78] Mensaje recibido del Arduino: 
+11:34:32 PM: INFO [controlador_arduino.py:48] Puerto del Arduino establecido en COM3
+11:34:32 PM: INFO [controlador_arduino.py:31] Conexión al Arduino exitosa
+11:34:33 PM: INFO [controlador_arduino.py:87] Mensaje recibido del Arduino: Arduino ... OK
+11:34:33 PM: INFO [controlador_arduino.py:64] Mensaje enviado al Arduino: Python ... OK
+11:34:34 PM: INFO [controlador_arduino.py:87] Mensaje recibido del Arduino: Esperando Respuesta
+11:34:34 PM: INFO [controlador_arduino.py:126] Estatus del arduino: ON
+11:34:34 PM: INFO [controlador_arduino.py:64] Mensaje enviado al Arduino: M-0.434
+11:34:53 PM: INFO [controlador_arduino.py:48] Puerto del Arduino establecido en COM3
+11:34:53 PM: INFO [controlador_arduino.py:31] Conexión al Arduino exitosa
+11:34:55 PM: INFO [controlador_arduino.py:87] Mensaje recibido del Arduino: Arduino ... OK
+11:34:55 PM: INFO [controlador_arduino.py:64] Mensaje enviado al Arduino: Python ... OK
+11:34:55 PM: INFO [controlador_arduino.py:87] Mensaje recibido del Arduino: Esperando Respuesta
+11:34:55 PM: INFO [controlador_arduino.py:126] Estatus del arduino: ON
+11:34:55 PM: INFO [controlador_arduino.py:64] Mensaje enviado al Arduino: M-0.434
