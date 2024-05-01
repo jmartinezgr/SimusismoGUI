@@ -131,7 +131,8 @@ class Controlador:
     @classmethod
     def get_status(cls) -> str:
         """
-        Getter de la variable de clase estatus.
+        Retorna la variable de clase estatus que refleja el estado de la conexion en cualquier
+        instacia.
         """
         return cls._status
     
