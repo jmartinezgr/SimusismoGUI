@@ -18,17 +18,21 @@ class Controlador:
         Returns:
             serial.Serial: La conexión serial al Arduino.
         """
+        # Verifica si ya hay una conexión establecida con el Arduino.
         if cls._arduino is None:
+            # Si no hay conexión establecida, intenta establecerla.
             if puerto is None and cls._puerto is None:
                 log.error("Error estableciendo la conexión: No se ha definido el puerto del Arduino")
             else:
                 try:
+                    # Intenta establecer la conexión serial.
                     cls._arduino = serial.Serial(
                         cls._puerto if cls._puerto else puerto,
                         9600
                     )
                     time.sleep(0.1)
                     log.info("Conexión al Arduino exitosa")
+                    # Realiza la rutina de inicio después de establecer la conexión.
                     cls.rutina_inicio()
                     return cls._arduino
                 except Exception as e:
@@ -55,11 +59,14 @@ class Controlador:
         Args:
             mensaje (str): El mensaje a enviar al Arduino.
         """
+        # Intenta obtener la conexión serial con el Arduino.
         arduino = cls._obtener_conexion()
+        # Verifica si el estado de la conexión permite el envío de mensajes.
         if cls._status not in ["OFF","USE"]:
             if arduino:
                 cls._status = "USE"
                 try:
+                    # Envía el mensaje al Arduino y registra el evento.
                     arduino.write((mensaje+'\n').encode())
                     log.info(f"Mensaje enviado al Arduino: {mensaje}")
                 except Exception as e:
@@ -68,7 +75,7 @@ class Controlador:
                 log.error("No hay conexión establecida con el Arduino.")
             cls._status = "ON"
         else:
-            log.error("La conexion no esta disponible para uso")
+            log.error("La conexión no está disponible para uso")
 
     @classmethod
     def recibir_mensaje(cls) -> str:
@@ -78,11 +85,14 @@ class Controlador:
         Returns:
             str: El mensaje recibido del Arduino.
         """
+        # Intenta obtener la conexión serial con el Arduino.
         arduino = cls._obtener_conexion()
+        # Verifica si el estado de la conexión permite la recepción de mensajes.
         if cls._status not in ["OFF","WA"]:
             if arduino:
                 try:
                     cls._status = "WA"
+                    # Lee el mensaje recibido del Arduino y registra el evento.
                     mensaje_recibido = arduino.readline().decode().strip()
                     log.info(f"Mensaje recibido del Arduino: {mensaje_recibido}")
                     return mensaje_recibido
@@ -92,7 +102,7 @@ class Controlador:
                 log.error("No hay conexión establecida con el Arduino.")
             cls._status = "ON"
         else:
-            log.error("La conexion no esta disponible para uso")
+            log.error("La conexión no está disponible para uso")
     
     @classmethod
     def rutina_inicio(cls) -> None:
@@ -123,7 +133,7 @@ class Controlador:
                 # Si la respuesta es la esperada "Esperando Respuesta", cambia el estado a "ON".
                 if estado == "Esperando Respuesta":
                     cls._status = "ON"
-                    log.info(f"Estatus del arduino: {cls._status}")
+                    log.info(f"Estatus del Arduino: {cls._status}")
         else:
             # Si no hay conexión establecida con el Arduino, intenta establecerla.
             cls._obtener_conexion()
@@ -131,15 +141,20 @@ class Controlador:
     @classmethod
     def get_status(cls) -> str:
         """
-        Retorna la variable de clase estatus que refleja el estado de la conexion en cualquier
-        instacia.
+        Retorna la variable de clase estatus que refleja el estado de la conexión en cualquier
+        instancia.
         """
         return cls._status
     
     @classmethod
     def finalizar_conexion(cls):
+        """
+        Finaliza la conexión con el Arduino.
+
+        Cierra el puerto serial y restablece las variables de clase relacionadas.
+        """
         cls._arduino.close()
-        log.info(f"Conexion con el arduino cerrada exitosamente.")
+        log.info(f"Conexión con el Arduino cerrada exitosamente.")
         cls._arduino = None
 
 
