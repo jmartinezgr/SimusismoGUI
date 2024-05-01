@@ -18,7 +18,7 @@ void setup() {
 void loop() {
     serialEvent();
     if(new_message_from_serial){
-      if(message_from_serial == "Python ... OK\n"){
+      if(message_from_serial == "Python ... OK"){
         Serial.println("Esperando Respuesta");
         Serial.flush();
       }
@@ -30,8 +30,6 @@ void serialEvent() {
   while (Serial.available()) {
     // recibe nuevo byte
     int inChar = Serial.read();
-    // lo agrega al mensaje recibido
-    buffer += (char) inChar;
     // si se recibe un final de linea, se l evanta una bandera,
     // de forma que el ciclo frincipal pueda hacer algo con eso:
     if (inChar == '\n') {
@@ -39,6 +37,9 @@ void serialEvent() {
       new_message_from_serial = true; 
       buffer = "";
       break;
+    }else{
+      // lo agrega al mensaje recibido
+      buffer += (char) inChar;
     }
   }
 } 
