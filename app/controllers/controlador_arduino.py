@@ -8,7 +8,7 @@ class Controlador:
     _status = "OFF"
 
     @classmethod
-    def _obtener_conexion(cls, puerto: str = None) -> serial.Serial:
+    def __obtener_conexion(cls, puerto: str = None) -> serial.Serial:
         """
         Obtiene una conexión serial al Arduino.
 
@@ -33,7 +33,7 @@ class Controlador:
                     time.sleep(0.1)
                     log.info("Conexión al Arduino exitosa")
                     # Realiza la rutina de inicio después de establecer la conexión.
-                    cls.rutina_inicio()
+                    cls._rutina_inicio()
                     return cls._arduino
                 except Exception as e:
                     log.error(f"Ocurrió un error generando la conexión: {e}")
@@ -60,7 +60,7 @@ class Controlador:
             mensaje (str): El mensaje a enviar al Arduino.
         """
         # Intenta obtener la conexión serial con el Arduino.
-        arduino = cls._obtener_conexion()
+        arduino = cls.__obtener_conexion()
         # Verifica si el estado de la conexión permite el envío de mensajes.
         if cls._status not in ["OFF","USE"]:
             if arduino:
@@ -86,7 +86,7 @@ class Controlador:
             str: El mensaje recibido del Arduino.
         """
         # Intenta obtener la conexión serial con el Arduino.
-        arduino = cls._obtener_conexion()
+        arduino = cls.__obtener_conexion()
         # Verifica si el estado de la conexión permite la recepción de mensajes.
         if cls._status not in ["OFF","WA"]:
             if arduino:
@@ -105,7 +105,7 @@ class Controlador:
             log.error("La conexión no está disponible para uso")
     
     @classmethod
-    def rutina_inicio(cls) -> None:
+    def _rutina_inicio(cls) -> None:
         """
         Realiza una secuencia de inicialización al establecer la conexión con el Arduino.
 
@@ -160,4 +160,6 @@ class Controlador:
 
 if __name__ == "__main__":
     Controlador.establecer_puerto("COM3")
-    Controlador.enviar_mensaje("M-0.434")
+    Controlador.enviar_mensaje("0.434")
+    Controlador.finalizar_conexion()
+    Controlador.enviar_mensaje("0.456")
