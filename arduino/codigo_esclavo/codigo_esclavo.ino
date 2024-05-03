@@ -15,6 +15,16 @@ void setup() {
 
 void loop() {
   serialEvent();
+    if(new_message_from_serial){
+      if(message_from_serial == "PPM"){
+        Serial.println("Preparando Motores!");
+        delay(5000);
+        Serial.println("Centrando el eje!");
+        delay(5000);
+        Serial.println("Preparado");
+      }
+      new_message_from_serial = false;
+    }
 }
 
 void serialEvent() {
