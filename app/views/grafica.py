@@ -3,6 +3,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from ..controllers.lectura_archivos import LectorArchivoAT2
+from.principal_widget.frame5 import Frame5
 
 
 class Grafica:
@@ -30,7 +31,7 @@ class Grafica:
         self.fig, self.ax = plt.subplots(facecolor="#FF69B4", dpi=100, figsize=(4, 2))
         plt.title(titulo, color="white", size=12, family='Arial')
         self.ax.tick_params(direction='out', length=5, width=2, color="white", grid_color='r', grid_alpha=0.5)
-        self.line, = self.ax.plot([], [], color='m', marker='o', linewidth=12, markersize=1, markeredgecolor='m')
+        self.line, = self.ax.plot([], [], color='m', marker='o', linewidth=2, markersize=1, markeredgecolor='m')
         self.line2, = self.ax.plot([], [], color='g', marker='o', linewidth=2, markersize=1, markeredgecolor='g')
         plt.xlim(0, self.muestra)
         plt.ylim(0, self.ejey)
@@ -55,9 +56,9 @@ class Grafica:
         self.line2.set_data(range(self.muestra), self.datos_señal2)
 
     
-    def actualizar_grafica(self,nombre,canvas)->None:
+    def actualizar_grafica(self ,aceleracion,tiempo)->None:
         
-        aceleracion, tiempo = LectorArchivoAT2.leer_archivo(nombre)
+       
         print(aceleracion)
         print(tiempo)
        
@@ -66,8 +67,11 @@ class Grafica:
         
             
             
-            self.line3[0].set_data(tiempo,aceleracion )
-            self.ax2.set_xlim(0, max(tiempo))
-            self.ax2.set_ylim(min(aceleracion), max(aceleracion))
-            canvas.draw()
+            self.line.set_data(tiempo,aceleracion )
+            self.ax.set_xlim(0, max(tiempo))
+            self.ax.set_ylim(min(aceleracion), max(aceleracion))
+            
+            
+        
+            
     

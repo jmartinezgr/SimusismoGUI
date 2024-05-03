@@ -1,12 +1,27 @@
 import tkinter as tk
 from tkinter import ttk,Label,Entry,Button
 from...models.gestor_archivos.gestor_archivos import Gestor
+from...controllers.lectura_archivos import LectorArchivoAT2
+from..grafica import Grafica
+from.frame5 import Frame5
+
+
 
 class Frame6(tk.Frame):
-    def __init__(self, master=None):
+    grafica=None
+    
+    
+    
+   
+    
+    
+    def __init__(self, intancia_frame5=None, master=None):
         super().__init__(master)
         self.configure(bg='lavender')
         self.create_widgets()
+        self.instancia_frame5=intancia_frame5
+        
+        
 
     def create_widgets(self):
         Label(self, text='Tipo de datos', bg='lavender', fg='VioletRed1', font=('Arial', 12, 'bold')).grid(row=0, column=0, sticky='w', padx=5, pady=5)
@@ -19,7 +34,13 @@ class Frame6(tk.Frame):
         self.combobox_nuevo.grid(row=1, column=1, sticky='w', padx=5, pady=5)
 
     # Botón de enviar
-        enviar_sismo = Button(self, text='Enviar', font=('arial', 12, 'bold'), width=15, bg='pink', fg='black', command=lambda: self.grafica2.actualizar_grafica(self.combobox_sismos.get(), self.canvas2))
+        enviar_sismo = Button(self, 
+                      text='Enviar', 
+                      font=('arial', 12, 'bold'), 
+                      width=15, 
+                      bg='pink', 
+                      fg='black', 
+                      command=lambda: self.obtener_sismos(self.combobox_sismos.get(), self.combobox_nuevo.get()))
         enviar_sismo.grid(row=2, column=0, columnspan=2, sticky='w', padx=5, pady=5)
         
     # manejo eventos 
@@ -40,3 +61,14 @@ class Frame6(tk.Frame):
         print("holaaaaaaaaaaaaaaaaaaaaaaaaaaaa", carpeta_seleccionada)
         archivos_asociados = Gestor.archivos_asociados(carpeta_seleccionada)
         self.combobox_nuevo['values'] = archivos_asociados
+        
+    def obtener_sismos(self, carpeta, archivo):
+        ruta=Gestor.generar_ruta(carpeta, archivo)
+        ejex, ejey = LectorArchivoAT2.leer_archivo(ruta)
+        self.instancia_frame5.actualizar_canvas(ejey, ejex)
+        
+        
+        #self.grafica.actualizar_grafica(ejey, ejex)
+        
+        
+        

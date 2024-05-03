@@ -3,11 +3,11 @@ from pathlib import Path
 import numpy as np
 
 class LectorArchivoAT2:
-    sub_carpetas=[]
-    ruta_archivo="D:\Downloads\proyecto react\SimusismoGUI\data\datos_sismicos\datos_aceleracion\RSN5_NWCALIF.AB_A-FRN045.AT2"
+   
+   
     def __init__(self) -> None:
-        self.ejex=[]
-        self.ejey=[]
+        pass
+        
         
     
     
@@ -15,14 +15,20 @@ class LectorArchivoAT2:
 
 
     @classmethod
-    def leer_archivo(self,ruta_archivo):
-        ruta_archivo = self.ruta_archivo
-        if ruta_archivo.exists():
+    def leer_archivo(self,ruta_archivo)->None:
+        ruta=Path(ruta_archivo)
+        
+        if ruta.exists():
             # Usar np.genfromtxt para cargar los datos directamente
-            datos = np.genfromtxt(ruta_archivo, skip_header=4)
-            self.ejey = datos.flatten()
-            npts = len(self.ejey)
-            self.ejex = self._calcular_ejex(npts)
+            datos = np.genfromtxt(ruta, skip_header=4)
+            ejey = datos.flatten()
+            npts = len(ejey)
+            ejex = self._calcular_ejex(npts)
+            return  ejex,ejey
+        else:
+            print("El archivo no existe")
+            return None
+        
             
     @classmethod    
     def _calcular_ejex(self, npts, dt=0.001):

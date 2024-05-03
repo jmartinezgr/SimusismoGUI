@@ -8,6 +8,7 @@ class Gestor:
             print(self.subcarpetas)
             print("hola")
             self.archivos_asociados("datos_aceleracion")
+            print(Gestor.generar_ruta("datos_aceleracion","RSN1101_KOBE_AMA000.AT2"))
             
         except FileNotFoundError as e:
             print(f"Error: {e}")
@@ -21,8 +22,8 @@ class Gestor:
         except FileNotFoundError as e:
             print(f"Error: {e}")
             return []
-
-    def generar_ruta(self, carpeta, archivo)->str:
+    @classmethod
+    def generar_ruta(cls, carpeta, archivo)->str:
         try:
             ruta_carpeta = os.path.join("data", "datos_sismicos", carpeta)
             ruta_completa = os.path.join(ruta_carpeta, archivo)

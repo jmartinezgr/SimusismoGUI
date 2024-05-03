@@ -27,7 +27,7 @@ from .frame6 import Frame6
  #Datos archivo
 lector=LectorArchivoAT2()
 ruta_carpeta = 'D:\Desktop\Interfaz-mesa\archivos_sismos'
-sub_carpetas=LectorArchivoAT2().sub_carpetas
+
 
 
 
@@ -47,6 +47,14 @@ class Widget_Principal(Frame):
     def __init__(self, master, *args):
         """Inicializa el widget principal."""
         super().__init__(master, *args)
+        self.frame=None
+        self.frame1=None
+        self.frame2=None
+        self.frame3=None
+        self.frame4=None
+        self.frame5=None
+        self.frame6=None
+        
         
         
 
@@ -54,20 +62,20 @@ class Widget_Principal(Frame):
 
     def widgets(self):
         """Crea los widgets de la interfaz gráfica."""
-        frame = Frame0(self.master)
-        frame.grid(column=0, columnspan=2, row=0, sticky='nsew')
-        frame1 = Frame1(self.master)
-        frame1.grid(column=2, row=0, sticky='nsew')
-        frame4 = Frame4(self.master)
-        frame4.grid(column=0, row=1, sticky='nsew')
-        frame2 = Frame2(self.master)
-        frame2.grid(column=1, row=1, sticky='nsew')
-        frame3 = Frame3(self.master)
-        frame3.grid(column=2, row=1, sticky='nsew')
-        frame5 = Frame5(self.master)
-        frame5.grid(column=3, row=0, columnspan=2, sticky='nsew')
-        frame6 = Frame6(self.master)
-        frame6.grid(column=3, row=1, columnspan=2, sticky='nsew')
+        self.frame = Frame0(self.master)
+        self.frame.grid(column=0, columnspan=2, row=0, sticky='nsew')
+        self.frame1 = Frame1(self.master)
+        self.frame1.grid(column=2, row=0, sticky='nsew')
+        self.frame4 = Frame4(self.master)
+        self.frame4.grid(column=0, row=1, sticky='nsew')
+        self.frame2 = Frame2(self.master)
+        self.frame2.grid(column=1, row=1, sticky='nsew')
+        self.frame3 = Frame3(self.master)
+        self.frame3.grid(column=2, row=1, sticky='nsew')
+        self.frame5 = Frame5(self.grafica2, self.master)
+        self.frame5.grid(column=3, row=0, columnspan=2, sticky='nsew')
+        self.frame6 = Frame6(self.frame5,self.master)
+        self.frame6.grid(column=3, row=1, columnspan=2, sticky='nsew')
 
         self.master.columnconfigure(0, weight=2)
         self.master.columnconfigure(1, weight=2)
