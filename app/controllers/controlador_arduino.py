@@ -95,13 +95,16 @@ class Controlador:
                     # Lee el mensaje recibido del Arduino y registra el evento.
                     mensaje_recibido = arduino.readline().decode().strip()
                     log.info(f"Mensaje recibido del Arduino: {mensaje_recibido}")
+                    cls._status = "ON"
                     return mensaje_recibido
                 except Exception as e:
                     log.error(f"Error al recibir mensaje del Arduino: {e}")
+                    cls._status = "ON"
             else:
                 log.error("No hay conexión establecida con el Arduino.")
-            cls._status = "ON"
+
         else:
+            print(cls._status)
             log.error("La conexión no está disponible para uso")
     
     @classmethod
@@ -136,7 +139,7 @@ class Controlador:
                     log.info(f"Estatus del Arduino: {cls._status}")
         else:
             # Si no hay conexión establecida con el Arduino, intenta establecerla.
-            cls._obtener_conexion()
+            cls.__obtener_conexion()
 
     @classmethod
     def get_status(cls) -> str:
@@ -160,6 +163,9 @@ class Controlador:
 
 if __name__ == "__main__":
     Controlador.establecer_puerto("COM3")
-    Controlador.enviar_mensaje("0.434")
-    Controlador.finalizar_conexion()
-    Controlador.enviar_mensaje("0.456")
+    Controlador.enviar_mensaje("PPM")
+    Controlador.recibir_mensaje()   
+    Controlador.recibir_mensaje()
+    if Controlador.recibir_mensaje() == "Preparado":
+        for dato in [1,2,3]:
+            Controlador.enviar_mensaje(str(dato))
