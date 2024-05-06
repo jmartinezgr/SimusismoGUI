@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk,Label,Entry,Button
+from tkinter import ttk,Label,Button,filedialog
 from...models.gestor_archivos.gestor_archivos import Gestor
 from...controllers.lectura_archivos import LectorArchivoAT2
 from..grafica import Grafica
@@ -42,6 +42,16 @@ class Frame6(tk.Frame):
                       fg='black', 
                       command=lambda: self.obtener_sismos(self.combobox_sismos.get(), self.combobox_nuevo.get()))
         enviar_sismo.grid(row=2, column=0, columnspan=2, sticky='w', padx=5, pady=5)
+    
+        num_filas_adicionales = 5
+
+# Agregar filas adicionales con pesos asignados
+        for i in range(num_filas_adicionales):
+            self.grid_columnconfigure(3 + i, weight=1)
+    # Boton subida archivo
+        boton_subir_archivo = tk.Button(self, text="Subir Archivos", command= Gestor.subir_archivo)
+       
+        boton_subir_archivo.grid(row=0, column=7, columnspan=20, sticky='e') 
         
     # manejo eventos 
         self.combobox_sismos.bind('<<ComboboxSelected>>', lambda event: self.habilitar_combobox())
@@ -66,6 +76,8 @@ class Frame6(tk.Frame):
         ruta=Gestor.generar_ruta(carpeta, archivo)
         ejex, ejey = LectorArchivoAT2.leer_archivo(ruta)
         self.instancia_frame5.actualizar_canvas(ejey, ejex)
+        
+    
         
         
         #self.grafica.actualizar_grafica(ejey, ejex)
