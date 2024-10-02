@@ -24,19 +24,19 @@ class Frame6(tk.Frame):
         
 
     def create_widgets(self):
-        Label(self, text='Tipo de datos', bg='lavender', fg='VioletRed1', font=('Arial', 12, 'bold')).grid(row=0, column=0, sticky='w', padx=5, pady=5)
+        Label(self, text='Tipo de datos', bg='lavender', fg='#000', font=('Arial', 12, )).grid(row=0, column=0, sticky='w', padx=5, pady=5)
         self.combobox_sismos = ttk.Combobox(self, values=Gestor.subcarpetas, justify='center', width=12, font='Arial')
         self.combobox_sismos.grid(row=1, column=0, sticky='w', padx=5, pady=5)
 
     # Nuevo Label y Combobox a la derecha
-        Label(self, text='Seleccion archivo', bg='lavender', fg='VioletRed1', font=('Arial', 12, 'bold')).grid(row=0, column=1, sticky='w', padx=5, pady=5)
+        Label(self, text='Seleccion archivo', bg='lavender', fg='#000', font=('Arial', 12, )).grid(row=0, column=1, sticky='w', padx=5, pady=5)
         self.combobox_nuevo = ttk.Combobox(self,state="disabled",values=[], justify='center', width=12, font='Arial')
         self.combobox_nuevo.grid(row=1, column=1, sticky='w', padx=5, pady=5)
 
     # Botón de enviar
         enviar_sismo = Button(self, 
                       text='Enviar', 
-                      font=('arial', 12, 'bold'), 
+                      font=('arial', 12, ), 
                       width=15, 
                       bg='pink', 
                       fg='black', 

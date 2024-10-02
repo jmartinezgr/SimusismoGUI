@@ -28,11 +28,11 @@ class Grafica:
         self.ejey = ejey
         self.titulo = titulo
 
-        self.fig, self.ax = plt.subplots(facecolor="#FF69B4", dpi=100, figsize=(4, 2))
-        plt.title(titulo, color="white", size=12, family='Arial')
-        self.ax.tick_params(direction='out', length=5, width=2, color="white", grid_color='r', grid_alpha=0.5)
-        self.line, = self.ax.plot([], [], color='m', marker='o', linewidth=2, markersize=1, markeredgecolor='m')
-        self.line2, = self.ax.plot([], [], color='g', marker='o', linewidth=2, markersize=1, markeredgecolor='g')
+        self.fig, self.ax = plt.subplots(facecolor="lavender", dpi=100, figsize=(4, 2))
+        plt.title(titulo, color="#000", size=12, family='Arial')
+        self.ax.tick_params(direction='out', length=5, width=1, color="r", grid_color='r', grid_alpha=0.5)
+        self.line, = self.ax.plot([], [], color='r', marker='o', linewidth=2, markersize=1, markeredgecolor='r')
+        self.line2, = self.ax.plot([], [], color='r', marker='o', linewidth=2, markersize=1, markeredgecolor='r')
         plt.xlim(0, self.muestra)
         plt.ylim(0, self.ejey)
         self.ax.set_facecolor('#6E6D7000')
